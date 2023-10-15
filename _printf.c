@@ -1,44 +1,33 @@
 #include "main.h"
 
 /**
- * _printf - produces output according to a format
- * @format: string
+ * _printf - write output to stdout,
+ * the standard output stream
  *
- * Return: count
+ * @format: is a character string.
+ *
+ * Return: the number of characters printed.
  */
-
 
 int _printf(const char *format, ...)
 {
-	unsigned int i, count = 0;
+	int len;
+	va_list ap;
+	args_handle_t argsList[] = {
+			{"c", print_char},
+			{"s", print_string},
+			{"%", print_percent},
+			{NULL, NULL}
+		};
 
-	va_list args;
+	if (format == NULL)
+		return (-1);
 
-	va_start(args, format);
+	va_start(ap, format);
 
-	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (format[i] != '%')
-		{
-			_putchar(format[i]);
-		}
-		else if (format[i + 1] == 'c')
-		{
-			_putchar(va_arg(args, int));
-			i++;
-		}
-		else if (format[i + 1] == 's')
-		{
-			_puts(va_arg(args, char*));
-			i++;
-		}
-		else if (format[i + 1] == '%')
-		{
-			_putchar('%');
-			i++;
-		}
-		count++;
-	}
-	va_end(args);
-	return (count);
+	len = manager(format, ap, argsList);
+
+	va_end(ap);
+
+	return (len);
 }

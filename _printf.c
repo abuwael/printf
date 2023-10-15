@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * _printf - produces output according to a format
+ * @format: string
+ *
+ * Return: count
+ */
+
 
 int _printf(const char *format, ...)
 {

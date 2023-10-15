@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+echo 'Enter file name'
+read filename
+chmod u+x ${filename}
+
+git add .
+git commit -m ${filename}
+git push

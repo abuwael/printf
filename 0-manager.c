@@ -24,7 +24,7 @@ int manager(const char *format, va_list args, args_handle_t args_list[])
 			{
 				if (format[i1 + 1] == args_list[i2].sym[0])
 				{
-					re_val = args_list[i2].f(ap);
+					re_val = args_list[i2].f(args);
 					if (re_val == -1)
 						return (-1);
 					chars += re_val;

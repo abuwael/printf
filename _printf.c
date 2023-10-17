@@ -12,22 +12,24 @@
 int _printf(const char *format, ...)
 {
 	int len;
-	va_list ap;
+	va_list args;
 	args_handle_t argsList[] = {
 			{"c", print_char},
 			{"s", print_string},
 			{"%", print_percent},
+			{"d", print_integer},
+			{"i", print_integer},
 			{NULL, NULL}
 		};
 
 	if (format == NULL)
 		return (-1);
 
-	va_start(ap, format);
+	va_start(args, format);
 
-	len = manager(format, ap, argsList);
+	len = manager(format, args, argsList);
 
-	va_end(ap);
+	va_end(args);
 
 	return (len);
 }
